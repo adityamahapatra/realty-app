@@ -2,11 +2,6 @@ language: python
 
 os:
   - linux
-  - osx
-
-jobs:
-  allow_failures:
-    - os: osx
 
 python:
   - "3.9"
