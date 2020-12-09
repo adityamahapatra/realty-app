@@ -133,3 +133,5 @@ dmypy.json
 
 # Local files
 resources/
+realty/static/
+realty/media/
