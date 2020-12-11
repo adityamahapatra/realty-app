@@ -14,7 +14,5 @@ matrix:
 install:
   - pip install -r requirements.txt
 
-jobs:
-  include:
-    - script: ./flake8
-    name: "Linter"
+script: ./flake8
+
