@@ -115,6 +115,6 @@ USE_TZ = True
 
 STATIC_ROOT = BASE_DIR / "static"
 STATIC_URL = "/static/"
-STATICFILES_DIR = [
+STATICFILES_DIRS = [
     BASE_DIR / "realty" / "static",
 ]
