@@ -18,4 +18,4 @@ jobs:
   include:
     - name: "Linter"
       script:
-        - "flake8"
+        - ./flake8
