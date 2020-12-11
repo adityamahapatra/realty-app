@@ -16,6 +16,5 @@ install:
 
 jobs:
   include:
-    - name: "Linter"
-      script:
-        - ./flake8
+    - script: ./flake8
+    name: "Linter"
