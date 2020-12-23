@@ -7,7 +7,7 @@ from .models import Listing
 
 # Create your views here.
 def index(request) -> HttpResponse:
-    listings = Listing.objects.order_by("-list_date")
+    listings = Listing.objects.order_by("-list_date").filter(is_published=True)
     paginator = Paginator(listings, 3)
     page = request.GET.get("page")
     paged_listings = paginator.get_page(page)
