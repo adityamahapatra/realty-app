@@ -68,6 +68,7 @@ def search(request) -> HttpResponse:
         "price_choices": price_choices,
         "state_choices": state_choices,
         "listings": query_set_list,
+        "values": request.GET,
     }
 
     return render(request, "listings/search.html", context)
