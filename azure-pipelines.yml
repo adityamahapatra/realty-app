@@ -16,8 +16,6 @@ strategy:
       PYTHON_VERSION: '3.8'
     Python39:
       PYTHON_VERSION: '3.9'
-    Nightly:
-      PYTHON_VERSION: 'nightly'
   maxParallel: 4
 
 steps:
