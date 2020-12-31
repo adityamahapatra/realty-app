@@ -157,6 +157,9 @@ jobs:
           print('##vso[task.setvariable variable=projectRoot]{}'.format(project_location))
 
     - script: |
+        pip install virtualenv
+        virtualenv .env
+        source .env/bin/activate
         python -m pip install --upgrade pip setuptools wheel
         pip install -r requirements.txt
         pip install unittest-xml-reporting
@@ -164,6 +167,7 @@ jobs:
 
     - script: |
         pushd '$(projectRoot)'
+        source .env/bin/activate
         python manage.py test --testrunner xmlrunner.extra.djangotestrunner.XMLTestRunner --no-input
       displayName: 'Run tests'
 
