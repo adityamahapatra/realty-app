@@ -68,7 +68,10 @@ def login(request) -> HttpResponse:
 
 
 def logout(request) -> HttpResponse:
-    return redirect("index")
+    if request.method == "POST":
+        auth.logout(request)
+        messages.success(request, "Logged out succesfully.")
+        return redirect("index")
 
 
 def dashboard(request) -> HttpResponse:
