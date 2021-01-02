@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.core.mail import send_mail
 from django.shortcuts import redirect
 
 from .models import Contact
@@ -14,6 +15,7 @@ def contact(request):
         phone = request.POST["phone"]
         message = request.POST["message"]
         user_id = request.POST["user_id"]
+        realtor_email = request.POST["realtor_email"]
 
         # Check if the user has already made an inquiry about a property.
         if request.user.is_authenticated:
@@ -39,6 +41,15 @@ def contact(request):
         )
 
         contact.save()
+
+        # Send an email to the realtor whenever an inquiry is posted.
+        send_mail(
+            subject="BT Realty Property Inquiry",
+            message=f"New inquiry for {listing}. Sign in for more info.",
+            from_email="bantai.realestate@gmail.com",
+            recipient_list=[realtor_email],
+            fail_silently=False
+        )
 
         messages.success(
             request,
