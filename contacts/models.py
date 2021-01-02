@@ -5,7 +5,7 @@ from django.db import models
 
 # Create your models here.
 class Contacts(models.Model):
-    listings = models.CharField(max_length=200)
+    listing = models.CharField(max_length=200)
     listing_id = models.IntegerField()
     name = models.CharField(max_length=200)
     email = models.EmailField(max_length=100)
