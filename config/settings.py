@@ -35,6 +35,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     "listings.apps.ListingsConfig",
     "realtors.apps.RealtorsConfig",
+    "contacts.apps.ContactsConfig",
     "pages.apps.PagesConfig",
     "accounts.apps.AccountsConfig",
     "django.contrib.admin",
