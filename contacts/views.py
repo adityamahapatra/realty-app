@@ -22,8 +22,10 @@ def contact(request):
                 listing_id=listing_id, user_id=user_id
             )
             if has_contacted:
-                messages.error(request, "You have already made an inquiry for \
-                    this listing")
+                messages.error(
+                    request,
+                    "You have already made an inquiry for this listing"
+                )
                 return redirect(f"/listings/{listing_id}")
 
         contact = Contact(
