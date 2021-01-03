@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 
+from contacts.models import Contact
+
 
 # Create your views here.
 def register(request) -> HttpResponse:
@@ -75,5 +77,10 @@ def logout(request) -> HttpResponse:
 
 
 def dashboard(request) -> HttpResponse:
-    context = {}
+    user_inquiries = Contact.objects.all().order_by("-contact_date").filter(
+        user_id=request.user.id
+    )
+    context = {
+        "inquiries": user_inquiries,
+    }
     return render(request, "accounts/dashboard.html", context)
