@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import contextlib
 from pathlib import Path
 
 from django.contrib.messages import constants as messages
@@ -147,3 +148,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = "bantai.realestate@gmail.com"
 EMAIL_HOST_PASSWORD = "mgfpdwfqlmtdkrxi"
 EMAIL_USE_TLS = True
+
+
+with contextlib.suppress(ImportError):
+    from .local_settings import *
