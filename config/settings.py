@@ -142,13 +142,6 @@ MESSAGE_TAGS = {
 }
 
 
-# Email config
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_PORT = 587
-EMAIL_HOST_USER = "bantai.realestate@gmail.com"
-EMAIL_HOST_PASSWORD = "mgfpdwfqlmtdkrxi"
-EMAIL_USE_TLS = True
-
-
+# Import settings constants.
 with contextlib.suppress(ImportError):
-    from .local_settings import *
+    from .local_settings import *  # noqa: F403
