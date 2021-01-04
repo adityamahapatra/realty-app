@@ -1,5 +1,6 @@
 from django.contrib import auth, messages
 from django.contrib.auth.models import User
+from django.http.request import HttpRequest
 from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 
@@ -7,7 +8,7 @@ from contacts.models import Contact
 
 
 # Create your views here.
-def register(request) -> HttpResponse:
+def register(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
         # Get values from the registration form.
         first_name = request.POST["first_name"]
@@ -52,7 +53,7 @@ def register(request) -> HttpResponse:
         return render(request, "accounts/register.html", context)
 
 
-def login(request) -> HttpResponse:
+def login(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
@@ -69,14 +70,14 @@ def login(request) -> HttpResponse:
         return render(request, "accounts/login.html")
 
 
-def logout(request) -> HttpResponse:
+def logout(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
         auth.logout(request)
         messages.success(request, "Logged out succesfully.")
         return redirect("index")
 
 
-def dashboard(request) -> HttpResponse:
+def dashboard(request: HttpRequest) -> HttpResponse:
     user_inquiries = Contact.objects.all().order_by("-contact_date").filter(
         user_id=request.user.id
     )

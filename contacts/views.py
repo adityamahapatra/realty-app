@@ -1,12 +1,14 @@
 from django.contrib import messages
 from django.core.mail import send_mail
+from django.http.request import HttpRequest
+from django.http.response import HttpResponse
 from django.shortcuts import redirect
 
 from .models import Contact
 
 
 # Create your views here.
-def contact(request):
+def contact(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
         listing_id = request.POST["listing_id"]
         listing = request.POST["listing"]

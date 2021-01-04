@@ -1,4 +1,5 @@
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.http.request import HttpRequest
 from django.http.response import HttpResponse
 from django.shortcuts import get_object_or_404, render
 
@@ -7,7 +8,7 @@ from .choices import bedroom_choices, price_choices, state_choices
 
 
 # Create your views here.
-def index(request) -> HttpResponse:
+def index(request: HttpRequest) -> HttpResponse:
     listings = Listing.objects.order_by("-list_date").filter(is_published=True)
     paginator = Paginator(listings, 3)
     page = request.GET.get("page")
@@ -18,7 +19,7 @@ def index(request) -> HttpResponse:
     return render(request, "listings/listings.html", context)
 
 
-def listing(request, listing_id: int) -> HttpResponse:
+def listing(request: HttpRequest, listing_id: int) -> HttpResponse:
     listing = get_object_or_404(Listing, pk=listing_id)
 
     context = {
@@ -28,7 +29,7 @@ def listing(request, listing_id: int) -> HttpResponse:
     return render(request, "listings/listing.html", context)
 
 
-def search(request) -> HttpResponse:
+def search(request: HttpRequest) -> HttpResponse:
     query_set_list = Listing.objects.order_by("-list_date")
 
     # Keywords
